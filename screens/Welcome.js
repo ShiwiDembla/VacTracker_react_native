@@ -11,11 +11,11 @@ import {StyleSheet,Text, View, Image} from 'react-native';
         <Text style={style.titleText}>Welcome</Text>
         
         <View style={style.ButtonStyle}>
-                <Button  mode="contained" style={style.colorstyle} onPress={() => navigation.navigate('Register')}  >
-                    Register
+                <Button  mode="contained" style={style.colorstyle} onPress={() => navigation.navigate('Signup')}  >
+                    Signup
                  </Button>
 
-                <Button  mode="contained" style={style.colorstyle} onPress={() => navigation.navigate('Login')}   contentStyle={{  justifyContent: 'center' }}>
+                <Button  mode="contained" style={style.colorstyle2} onPress={() => navigation.navigate('Login')}   contentStyle={{  justifyContent: 'center' }}>
                 Login
                 </Button>
 
@@ -46,5 +46,9 @@ const style = StyleSheet.create({
         backgroundColor: '#48A296',
         marginVertical:5,
     
+    },
+    colorstyle2:{
+        backgroundColor:'#88C7BE',
+        marginVertical:5,
     }
 });
