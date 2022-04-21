@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native-paper';
+import { Button, Title } from 'react-native-paper';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 
@@ -8,7 +8,7 @@ export default Welcome = ({ navigation }) => {
         <View style={style.container}>
 
             <Image source={require('../src/assets/welcome.png')} style={{ marginTop: 30 }} />
-            <Text style={style.titleText}>Welcome</Text>
+            <Title style={style.titleText}>Welcome</Title>
 
             <View style={style.ButtonStyle}>
                 <Button mode="contained" style={style.colorstyle} onPress={() => navigation.navigate('Signup')}  >
