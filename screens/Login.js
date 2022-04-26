@@ -13,6 +13,7 @@ export default Login = ({ navigation }) => {
       </View>
 
 
+      
       <View style={{ flex: 2.5, backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50 }} >
         <SafeAreaView style={{ marginTop: 80, marginLeft: 40, marginRight: 40 }}>
 
