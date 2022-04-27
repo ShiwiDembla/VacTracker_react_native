@@ -5,7 +5,11 @@ import Login from './Screens/Login';
 import Signup from './Screens/Signup';
 import Welcome from "./Screens/Welcome";
 import HomeScreen from './Screens/HomeScreen';
+<<<<<<< HEAD
 import Home from './Screens/Home';
+=======
+
+>>>>>>> 4fbd8f0143cba52a29b10bfcb7560befd67163b9
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
