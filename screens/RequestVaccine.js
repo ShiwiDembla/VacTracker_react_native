@@ -5,7 +5,7 @@ function RequestVaccine(){
     return(
         <ScrollView>
         <View>
-            <Text> Request a Vaccine </Text>
+           <Text> Request a Vaccine </Text>
         </View>
         </ScrollView>
     );

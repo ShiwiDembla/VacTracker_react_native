@@ -1,103 +1,72 @@
-import React from "react";
-<<<<<<< HEAD
+import React,{useState} from "react";
 import { Button, TextInput } from 'react-native-paper';
 import { StyleSheet, ScrollView, SafeAreaView, Text, View, Image, Icon } from 'react-native';
-import DropDown from "react-native-paper-dropdown";
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 // import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
+import { Picker } from "@react-native-picker/picker";
 function TrackVaccine({navigation}){
-  const genderList = [
-    {
-      label: "Male",
-      value: "male",
-    },
-    {
-      label: "Female",
-      value: "female",
-    },
-    {
-      label: "Others",
-      value: "others",
-    },
-  ];
-  // const [gender, setGender] = useState < string > "";
+
+  const [pickerValue, setPickerValue]=useState('Kandhkot');
+
     return(
-        <ScrollView>
+        // <ScrollView>
               <View style={{flex:1}}>
               <View style={{flex:1, backgroundColor: "#48A296", alignItems:"center", justifyContent: "center"}}> 
-              <Image style={{flex:1,height:400}} source={require('../src/assets/maps.png')} />
-              
+              {/* <Image style={{flex:1,height:400}} source={require('../src/assets/maps.png')} /> */}
+              <MapView
+              provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+              style={styles.map}
+              region={{
+                latitude: 37.78825,
+                longitude: -122.4324,
+                latitudeDelta: 0.015,
+                longitudeDelta: 0.0121,
+              }}
+            >
+            </MapView>
+
+
               </View>
 
 
-              <View style={{flex:2.5, backgroundColor: "#48A296", borderTopLeftRadius: 30, borderTopRightRadius: 50,height:250}}>
+              <View style={{flex:2.5, backgroundColor: "#48A296", borderTopLeftRadius: 30, borderTopRightRadius: 50}}>
                 {/* <Text style={{fontSize: 20, textAlign: "center", fontWeight: "bold"}}>HELLO</Text> */}
                 
-                <View style={{alignItems:'center', justifyContent:'center', marginTop:40}}>
-                <DropDown
-              label={"Gender"}
-              mode={"outlined"}
-              // visible={showDropDown}
-              // showDropDown={() => setShowDropDown(true)}
-              // onDismiss={() => setShowDropDown(false)}
-              // value={gender}
-              // setValue={setGender}
-              list={genderList}
-            />
+                <View style={{alignItems:'center', justifyContent:'center', marginTop:80}}>
+               
+               <Picker 
+               style={styles.picker}
+               selectedValue= {pickerValue}
+               onValueChange ={ (itemValue)=>setPickerValue(itemValue)}
+               >
+                <Picker.Item label="Kandhkot" value="Kandhkot"/> 
+                <Picker.Item label="Kashmore" value="Kashmore"/> 
+                <Picker.Item label="Karachi" value="Karachi"/> 
+               </Picker>
+
           <Button mode="contained"
             style={styles.ButtonStyle}
             theme={{ roundness: 20 }}  
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('CentersResults')}
             contentStyle={{ justifyContent: 'center', fontWeight: 100,  }}>
            Track
           </Button>
 
           </View>
 
-
+ 
 
               </View>
               </View>
 
              
-=======
-import {Button, Text, View, ScrollView, StyleSheet} from 'react-native';
-
-function TrackVaccine(){
-    return(
-        <ScrollView>
-        <View style={styles.container}>
-      <View style={{ flex: 1, backgroundColor: "#48A296", justifyContent: 'center', alignItems: 'center' }} >
-        <Text style={styles.titleText}>Welcome</Text>
-      </View>
-
-
-      <View style={{ flex: 2.5, backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50 }} >
-
-{/* 
-          <View style={{alignItems:'center', justifyContent:'center', marginTop:40}}>
-          <Button mode="contained"
-            style={styles.ButtonStyle}
-            theme={{ roundness: 20 }}  
-            onPress={() => navigation.navigate('HomeScreen')}
-            contentStyle={{ justifyContent: 'center', fontWeight: 100 }}>
-            Login
-          </Button>
-          </View> */}
-
-
-    
-      </View>
-    </View>
->>>>>>> 4fbd8f0143cba52a29b10bfcb7560befd67163b9
-        </ScrollView>
+        // </ScrollView>
     );
 
 }
 
 export default TrackVaccine;
 
-<<<<<<< HEAD
 
 
 {/* <View style={{flex:1, alignItems: "center", justifyContent: "center"}}>
@@ -120,7 +89,16 @@ const styles = StyleSheet.create({
     marginBottom: 55,
     width: 148,
    
-  }
+  },
+  picker:{
+    width:148,
+    borderWidth:1,
+    borderColor:'black',
+    marginBottom:10
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
 });
 //   container: {
 //     flex: 1,
@@ -166,15 +144,3 @@ const styles = StyleSheet.create({
 
 //   }
 //   });
-=======
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      // padding: 20,
-      backgroundColor: '#48A296',
-      // alignItems:'center',
-      justifyContent:'center',
-      flexDirection: "column"
-    },  
-  });
->>>>>>> 4fbd8f0143cba52a29b10bfcb7560befd67163b9

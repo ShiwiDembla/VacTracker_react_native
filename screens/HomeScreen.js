@@ -1,9 +1,6 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-<<<<<<< HEAD
 import Icon from 'react-native-vector-icons/FontAwesome';
-=======
->>>>>>> 4fbd8f0143cba52a29b10bfcb7560befd67163b9
 import React from 'react';
 import Home from './Home';
 import VaccineDetails from './VaccineDetails';
@@ -33,18 +30,12 @@ function HomeScreen() {
         name="TrackVaccine"
         component={TrackVaccine}
         options={{
-<<<<<<< HEAD
           tabBarLabel: 'Track',
           tabBarIcon: ({ color }) => (
             // <MaterialCommunityIcons name="location" color={color} size={26} />
             <Icon name="location-arrow"
           size={26}
           color={color} />
-=======
-          tabBarLabel: 'Request',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
->>>>>>> 4fbd8f0143cba52a29b10bfcb7560befd67163b9
           ),
         }}
       />
