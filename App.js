@@ -6,6 +6,7 @@ import Signup from './Screens/Signup';
 import Welcome from "./Screens/Welcome";
 import HomeScreen from './Screens/HomeScreen';
 import Home from './Screens/Home';
+import RequestVaccine from './Screens/RequestVaccine';
 import CentersResults from './Screens/CentersResults';
 import VaccineResults from './Screens/VaccineResults';
 import BookSlot from './Screens/BookSlot';
@@ -33,7 +34,8 @@ function App() {
     //     <Stack.Screen name="BookSlot" component={BookSlot} />
     //   </Stack.Navigator>
     // </NavigationContainer>
-    <BookSlot/>
+    // <BookSlot/>
+    <RequestVaccine/>
   );
 }
 
