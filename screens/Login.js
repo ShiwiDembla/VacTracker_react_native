@@ -7,7 +7,7 @@ export default Login = ({ navigation }) => {
   return (
     <ScrollView>
     <View style={styles.container}>
-      <View style={{ flex: 1, backgroundColor: "#48A296", justifyContent: 'center', alignItems: 'center' }} >
+      <View style={{ flex: 1, backgroundColor: "#306060", justifyContent: 'center', alignItems: 'center' }} >
         <Image source={require('../src/assets/signin.png')} style={styles.image} />
         <Text style={styles.titleText}>Welcome</Text>
       </View>
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // padding: 20,
-    backgroundColor: '#48A296',
+    backgroundColor: '#306060',
     // alignItems:'center',
     justifyContent:'center',
     flexDirection: "column"
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
 
   ButtonStyle: {
     // flex: 1,
-    backgroundColor:'#48A296',
+    backgroundColor:'#306060',
     marginBottom: 55,
     width: 148,
   },
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   colorstyle: {
     // color:'#48A296',
-    backgroundColor: '#48A296',
+    backgroundColor: '#306060',
     marginVertical: 5,
   },
   image: {
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     // paddingTop:50,
   },
   colorstyle2: {
-    backgroundColor: '#48A296',
+    backgroundColor: '#306060',
     marginVertical: 5,
     // fontWeight:"bold"
   },

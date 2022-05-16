@@ -11,7 +11,7 @@ function TrackVaccine({navigation}){
     return(
         // <ScrollView>
               <View style={{flex:1}}>
-              <View style={{flex:1, backgroundColor: "#48A296", alignItems:"center", justifyContent: "center"}}> 
+              <View style={{flex:1, backgroundColor: "#306060", alignItems:"center", justifyContent: "center"}}> 
               {/* <Image style={{flex:1,height:400}} source={require('../src/assets/maps.png')} /> */}
               <MapView
               provider={PROVIDER_GOOGLE} // remove if not using Google Maps
@@ -29,7 +29,7 @@ function TrackVaccine({navigation}){
               </View>
 
 
-              <View style={{flex:2.5, backgroundColor: "#48A296", borderTopLeftRadius: 30, borderTopRightRadius: 50}}>
+              <View style={{flex:2.5, backgroundColor: "#306060", borderTopLeftRadius: 30, borderTopRightRadius: 50}}>
                 {/* <Text style={{fontSize: 20, textAlign: "center", fontWeight: "bold"}}>HELLO</Text> */}
                 
                 <View style={{alignItems:'center', justifyContent:'center', marginTop:80}}>
@@ -84,7 +84,7 @@ export default TrackVaccine;
 const styles = StyleSheet.create({
   ButtonStyle: {
     // flex: 1,
-    backgroundColor:'black',
+    backgroundColor:'#cad4d8',
     // color:'black',
     marginBottom: 55,
     width: 148,
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   picker:{
     width:148,
     borderWidth:1,
-    borderColor:'black',
+    borderColor:'#cad4d8',
     marginBottom:10
   },
   map: {

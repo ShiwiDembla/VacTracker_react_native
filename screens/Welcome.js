@@ -35,7 +35,7 @@ const style = StyleSheet.create({
     titleText: {
         fontSize: 30,
         fontWeight: 'bold',
-        color: '#48A296',
+        color: '#306060',
 
     },
     ButtonStyle: {
@@ -46,12 +46,12 @@ const style = StyleSheet.create({
     },
     colorstyle: {
         // color:'#48A296',
-        backgroundColor: '#48A296',
+        backgroundColor: '#306060',
         marginVertical: 5,
 
     },
     colorstyle2: {
-        backgroundColor: '#88C7BE',
+        backgroundColor: '#306060',
         marginVertical: 5,
     }
 });
