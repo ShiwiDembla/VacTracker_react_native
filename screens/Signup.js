@@ -1,38 +1,72 @@
-import React from "react";
-import { Button, TextInput } from 'react-native-paper';
-import { StyleSheet, ScrollView, SafeAreaView, Text, View, Image, Icon } from 'react-native';
+import React,{useState} from "react";
+import {KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Button, TextInput  } from 'react-native-paper';
+import * as Animatable from 'react-native-animatable'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { StyleSheet, ScrollView, SafeAreaView, Text, View, Image, Icon} from 'react-native';
+import Feather from 'react-native-vector-icons/Feather';
+import LinearGradient from "react-native-linear-gradient";
 
-// import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 export default Signup = ({ navigation }) => {
+  const [name,setName] = useState("");
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
   return (
-    <ScrollView>
+    // <KeyboardAwareScrollView> 
     <View style={styles.container}>
     <View style={{ flex: 1, backgroundColor: "#306060", justifyContent: 'center', alignItems: 'center' }} >
-      {/* <Image source={require('../src/assets/signin.png')} style={styles.image} /> */}
-      <Text style={styles.titleText}>Create your new account</Text>
+    <Animatable.Image 
+          animation ="bounceIn"
+          duration={1500} source={require('../src/assets/signin.png')} style={styles.image} />
+      <Text style={styles.titleText}>Register</Text>
     </View>
 
 
-    <View style={{ flex: 2.5, backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50 }} >
+    <Animatable.View 
+        animation="fadeInUpBig"
+        duratio={1500} style={{ flex: 2.5 ,backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50 }} >
+          <ScrollView>
       <SafeAreaView style={{ marginTop: 20, marginLeft: 40, marginRight: 40 }}>
+      <Text style={{textAlign:'center',color:'#306060', fontWeight:'bold',fontSize:18, marginBottom:16}}>Create your new account</Text>
 
+
+     {/* <View style={{flexDirection:'row', 
+     marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#306060',
+        paddingBottom: 5
+        }}>
+      <FontAwesome
+      name="user-o"
+      color='#306060'
+      size={20}/>
       <TextInput
             label="First Name"
             placeholder="First Name"
             mode="outlined"
             // value="Em"
             keyboardType="name-phone-pad"
+            autoCapitalize="none"
             returnKeyType="next"
             style={styles.input}
             theme={{ roundness: 20 }}      
-          // value={text}
-          // onChangeText={text => setText(text)}
+          value={name}
+          onChangeText={text => setName(text)}
           />
+          <Feather
+          name="check-circle"
+          color="#306060"
+          size={20}
+          />
+          </View> */}
+
+
 
           <TextInput
-            label="Last Name"
-            placeholder="Last Name"
+            label="Full Name"
+            placeholder="Full Name"
             mode="outlined"
             // value="Em"
             keyboardType="name-phone-pad"
@@ -43,7 +77,7 @@ export default Signup = ({ navigation }) => {
           // onChangeText={text => setText(text)}
           />
 
-          <TextInput
+           <TextInput
             label="Email"
             placeholder="Email"
             mode="outlined"
@@ -56,6 +90,9 @@ export default Signup = ({ navigation }) => {
           // onChangeText={text => setText(text)}
           />
 
+
+
+    
           <TextInput
             label="Phone"
             placeholder="Phone"
@@ -123,11 +160,11 @@ export default Signup = ({ navigation }) => {
           </View>
      
       </SafeAreaView>
+      </ScrollView>
 
-
-    </View>
+    </Animatable.View>
   </View>
-  </ScrollView>
+//  </KeyboardAwareScrollView>
   );
 };
 
@@ -176,9 +213,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   input: {
-    marginBottom: 10,
+    // marginBottom: 10,
+    flex:1,
+    paddingLeft: 10,
+    // marginTop: -18
     // borderRadius: 15, 
-    // height: 40,
+    height: 50,
     // margin: 12,
     // borderWidth: 1,
     // paddingTop:50,

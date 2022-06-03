@@ -1,78 +1,90 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, TextInput } from 'react-native-paper';
+import * as Animatable from 'react-native-animatable'
 import { StyleSheet, ScrollView, SafeAreaView, Text, View, Image, Icon } from 'react-native';
-// import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import LinearGradient from "react-native-linear-gradient";
+
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 export default Login = ({ navigation }) => {
   return (
-    <ScrollView>
-    <View style={styles.container}>
-      <View style={{ flex: 1, backgroundColor: "#306060", justifyContent: 'center', alignItems: 'center' }} >
-        <Image source={require('../src/assets/signin.png')} style={styles.image} />
-        <Text style={styles.titleText}>Welcome</Text>
+    // <ScrollView>
+      <View style={styles.container}>
+        <View style={{ flex: 1, backgroundColor: "#306060", justifyContent: 'center', alignItems: 'center' }} >
+          <Animatable.Image 
+          animation ="bounceIn"
+          duration={1500}
+          source={require('../src/assets/signin.png')} style={styles.image} />
+          <Text style={styles.titleText}>Welcome</Text>
+        </View>
+
+
+
+        <Animatable.View 
+        animation="fadeInUpBig"
+        duration={1500}
+        style={{ flex: 2.5, backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50 }} >
+          <SafeAreaView style={{ marginTop: 80, marginLeft: 40, marginRight: 40 }}>
+
+            <TextInput
+              label="Email"
+              placeholder="Email"
+              mode="outlined"
+              // value="Em"
+              keyboardType="email-address"
+              returnKeyType="next"
+              style={styles.input}
+              theme={{ roundness: 20 }}
+            // value={text}
+            // onChangeText={text => setText(text)}
+            />
+
+            <TextInput
+              label="Password"
+              placeholder="Password"
+              mode="outlined"
+              // value="Em"
+              secureTextEntry={true}
+              returnKeyType="done"
+              multiline={false}
+              // secureTextEntry
+              autoCorrect={false}
+              theme={{ roundness: 20 }}
+              style={styles.input}
+              right={<TextInput.Icon name="eye" />}
+            // value={text}
+            // onChangeText={text => setText(text)}
+            />
+
+
+
+            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 40 }}>
+              <Button
+                // icon={camera}
+                mode="contained"
+                style={styles.ButtonStyle}
+                theme={{ roundness: 20 }}
+                onPress={() => navigation.navigate('HomeScreen')}
+                contentStyle={{ justifyContent: 'center', fontWeight: 100 }}>
+                Login
+              </Button>
+            </View>
+
+
+            <View style={[styles.row, { marginTop: 4 }]}>
+              <Text style={styles.linkText} > Don't have an account? </Text>
+              <Text style={[styles.linkText, { fontWeight: 'bold' }]} onPress={() => navigation.navigate('Signup')}>Signup</Text>
+            </View>
+
+          </SafeAreaView>
+
+
+        </Animatable.View>
       </View>
-
-
-      
-      <View style={{ flex: 2.5, backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50 }} >
-        <SafeAreaView style={{ marginTop: 80, marginLeft: 40, marginRight: 40 }}>
-
-          <TextInput
-            label="Email"
-            placeholder="Email"
-            mode="outlined"
-            // value="Em"
-            keyboardType="email-address"
-            returnKeyType="next"
-            style={styles.input}
-            theme={{ roundness: 20 }}      
-          // value={text}
-          // onChangeText={text => setText(text)}
-          />
-
-          <TextInput
-            label="Password"
-            placeholder="Password"
-            mode="outlined"
-            // value="Em"
-            secureTextEntry={true}
-            returnKeyType="done"
-            multiline={false}
-            // secureTextEntry
-            autoCorrect={false}
-            theme={{ roundness: 20 }}  
-            style={styles.input}
-            right={<TextInput.Icon name="eye" />}
-          // value={text}
-          // onChangeText={text => setText(text)}
-          />
-
-          
-
-          <View style={{alignItems:'center', justifyContent:'center', marginTop:40}}>
-          <Button mode="contained"
-            style={styles.ButtonStyle}
-            theme={{ roundness: 20 }}  
-            onPress={() => navigation.navigate('HomeScreen')}
-            contentStyle={{ justifyContent: 'center', fontWeight: 100 }}>
-            Login
-          </Button>
-          </View>
-
-
-          <View style={[styles.row, {marginTop:4}]}>
-            <Text style={styles.linkText} > Don't have an account? </Text>
-            <Text style={[styles.linkText, { fontWeight: 'bold' }]} onPress={() => navigation.navigate('Signup')}>Signup</Text>
-          </View>
-
-        </SafeAreaView>
-
-
-      </View>
-    </View>
-    </ScrollView>
+    // </ScrollView>
   );
 };
+
 
 
 
@@ -86,13 +98,13 @@ const styles = StyleSheet.create({
     // padding: 20,
     backgroundColor: '#306060',
     // alignItems:'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     flexDirection: "column"
   },
 
   ButtonStyle: {
     // flex: 1,
-    backgroundColor:'#306060',
+    backgroundColor: '#306060',
     marginBottom: 55,
     width: 148,
   },
@@ -120,6 +132,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 10,
+    height: 50,
     // borderRadius: 15, 
     // height: 40,
     // margin: 12,

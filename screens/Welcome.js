@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Title } from 'react-native-paper';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import LinearGradient from "react-native-linear-gradient";
 
 
 export default Welcome = ({ navigation }) => {
@@ -11,16 +13,56 @@ export default Welcome = ({ navigation }) => {
             <Title style={style.titleText}>Welcome</Title>
 
             <View style={style.ButtonStyle}>
-                <Button mode="contained" style={style.colorstyle} onPress={() => navigation.navigate('Signup')}  >
+                {/* <Button mode="contained" style={style.colorstyle} onPress={() => navigation.navigate('Signup')}  >
                     Signup
-                </Button>
+                </Button> */}
+
+                <View style={style.button}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                        <LinearGradient
+                            colors={['#306060', '#82afb0']}
+                            style={style.signIn}
+                        >
+                            <Text
+                                style={style.textSign}
+                            > Signup</Text>
+                            <MaterialIcons
+                                name="navigate-next"
+                                color='#ffffff'
+                                size={20}
+                            >
+
+                            </MaterialIcons>
+                        </LinearGradient>
+
+                    </TouchableOpacity>
+                </View>
 
 
-
-                <Button mode="contained" style={style.colorstyle2} onPress={() => navigation.navigate('Login')} contentStyle={{ justifyContent: 'center' }}>
+                {/* <Button mode="contained" style={style.colorstyle2} onPress={() => navigation.navigate('Login')} contentStyle={{ justifyContent: 'center' }}>
                     Login
-                </Button>
+                </Button> */}
+                <View style={style.button}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Login')}>
 
+                        <LinearGradient
+                            colors={['#306060', '#82afb0']}
+                            style={style.signIn}
+                        >
+                            <Text
+                                style={style.textSign}
+                            > Login</Text>
+                            <MaterialIcons
+                                name="login"
+                                color='#ffffff'
+                                size={20}
+                            >
+
+                            </MaterialIcons>
+                        </LinearGradient>
+
+                    </TouchableOpacity>
+                </View>
                 {/* <Button title='Hello' onPress={() => console.log("jashjsha")}> </Button> */}
             </View>
 
@@ -53,5 +95,21 @@ const style = StyleSheet.create({
     colorstyle2: {
         backgroundColor: '#306060',
         marginVertical: 5,
+    },
+    button: {
+        alignItems: 'flex-end',
+        marginTop: 10
+    },
+    signIn: {
+        width: 150,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+        flexDirection: 'row'
+    },
+    textSign: {
+        color: 'white',
+        fontWeight: 'bold'
     }
 });
