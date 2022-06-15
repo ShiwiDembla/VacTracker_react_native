@@ -9,7 +9,9 @@ import LinearGradient from "react-native-linear-gradient";
 
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-export default Signup = ({ navigation }) => {
+
+
+export default Signup = ({navigation}) => {
 
   const [name,setName] = useState("");
   const [email,setEmail] = useState("");
@@ -17,7 +19,30 @@ export default Signup = ({ navigation }) => {
   const [password,setPassword] = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
 
-
+  const insertuser = () =>{
+    fetch("http:10.0.2.2:3000/usersignup", {
+      method : "post",
+      headers:{
+          'Content-Type': 'application/json' 
+      },
+      body:JSON.stringify({
+         name,
+         email,
+         phone,
+         password,
+         confirmPassword
+      })
+  })
+  .then(res=>res.json())
+  //data as response
+  .then(data => {
+      console.log(data)
+     
+  }).catch(err => {
+      console.log(err)
+  })
+   navigation.navigate('Login')
+  }
 
   return (
     // <KeyboardAwareScrollView> 
@@ -74,13 +99,13 @@ export default Signup = ({ navigation }) => {
             label="Full Name"
             placeholder="Full Name"
             mode="outlined"
+            style={styles.input}
+            theme={{ roundness: 20 }}    
             // value="Em"
             keyboardType="name-phone-pad"
-            returnKeyType="next"
-            style={styles.input}
-            theme={{ roundness: 20 }}      
-          // value={text}
-          // onChangeText={text => setText(text)}
+            // returnKeyType="next"  
+          value={name}
+          onChangeText={name => setName(name)}
           />
 
            <TextInput
@@ -92,8 +117,8 @@ export default Signup = ({ navigation }) => {
             returnKeyType="next"
             style={styles.input}
             theme={{ roundness: 20 }}      
-          // value={text}
-          // onChangeText={text => setText(text)}
+          value={email}
+          onChangeText={email => setEmail(email)}
           />
 
 
@@ -108,8 +133,8 @@ export default Signup = ({ navigation }) => {
             returnKeyType="next"
             style={styles.input}
             theme={{ roundness: 20 }}      
-          // value={text}
-          // onChangeText={text => setText(text)}
+          value={phone}
+          onChangeText={phone => setPhone(phone)}
           />
 
           <TextInput
@@ -125,8 +150,8 @@ export default Signup = ({ navigation }) => {
             theme={{ roundness: 20 }}  
             style={styles.input}
             right={<TextInput.Icon name="eye" />}
-          // value={text}
-          // onChangeText={text => setText(text)}
+          value={password}
+          onChangeText={password => setPassword(password)}
           />
 
            <TextInput
@@ -142,8 +167,8 @@ export default Signup = ({ navigation }) => {
             theme={{ roundness: 20 }}  
             style={styles.input}
             right={<TextInput.Icon name="eye" />}
-          // value={text}
-          // onChangeText={text => setText(text)}
+          value={confirmPassword}
+          onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
           />
 
           
@@ -152,7 +177,7 @@ export default Signup = ({ navigation }) => {
           <Button mode="contained"
             style={styles.ButtonStyle}
             theme={{ roundness: 20 }}  
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => insertuser()}
             contentStyle={{ justifyContent: 'center', fontWeight: 100 }}>
             Signup
           </Button>

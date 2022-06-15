@@ -12,6 +12,10 @@ export default Login = ({ navigation }) => {
   const [password, setPassword] = useState(""); 
  
 
+  loginuser = () =>{
+    
+  }
+
 
   return (
     // <ScrollView>

@@ -11,6 +11,8 @@ const mongoURI = 'mongodb+srv://Shiwani:Shiwi3245@cluster0.lvu2r.mongodb.net/log
 // auth routes below this, it should be on the top
 
 require('./models/User');
+
+const User = mongoose.model('User')
 app.use(bodyParser.json())
 
 mongoose.connect(mongoURI,
@@ -34,44 +36,46 @@ mongoose.connection.on('error',(err)=>{
 // });
 
 
-app.post('/',(req,res)=>{
-    console.log(req.body)
-    res.send('hello world')
-  })
+// app.post('/',(req,res)=>{
+//     console.log(req.body)
+//     res.send('hello world')
+//   })
   
 
-//   app.post('/login', async(req , res) => {
-//     const {email, pass} =  req.body;
+  app.get('/login', async(req , res) => {
+    const {email, password} =  req.body;
 
-//     User.findOne({email}).then(data => {
-//         if(!data){return res.status(404).json({message: "User not Found"});}
-//         else{
-//             bcrypt.compare(pass, data.pass, (err, compareRes) => {
-//                 if(err) {res.status(502).json({message: "Error your message "});}
-//                 else if (compareRes) {
-//                     res.status(200).json({
-//                         success: true,
-//                         data
-//                     })
-//                 }
-//                 else {
-//                     res.status(401).json({message: "invalid creditional" , success: false,  compareRes});
-//             }})
-//         }
-//     }).catch(err => {
-//         console.log(err)
-//         res.status(400).json({
-//             success: false,
-//         })
-//     }) 
-// })
+    User.findOne({email}).then(data => {
+        if(!data){return res.status(404).json({message: "User not Found"});}
+        else{
+            bcrypt.compare(password, data.password, (err, compareRes) => {
+                if(err) {res.status(502).json({message: "Error your message "});}
+                else if (compareRes) {
+                    res.status(200).json({
+                        success: true,
+                        data
+                    })
+                }
+                else {
+                    res.status(401).json({message: "invalid creditional" , success: false,  compareRes});
+            }})
+        }
+    }).catch(err => {
+        console.log(err)
+        res.status(400).json({
+            success: false,
+        })
+    }) 
+})
+
+
 
 app.post('/usersignup', async(req, res) => { 
     const {password, confirmPassword, email} = req.body;
     const pass= await bcrypt.hash(password, 10)
     const confirmPass = await bcrypt.hash(confirmPassword, 10)
 
-    const existUsername = await Users.findOne({ email });
+    const existUsername = await User.findOne({ email });
    if (existUsername) {
      res.send('User already exists');
    }
