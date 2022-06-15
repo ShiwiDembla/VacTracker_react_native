@@ -15,6 +15,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { enableLatestRenderer } from 'react-native-maps';
 import VaccineDetails from './Screens/VaccineDetails';
+import Cards from './src/components/Cards';
+import DetailsCards from './src/components/DetailsCards';
+import Slotbooked from './Screens/Slotbooked';
 
 
 const Stack = createNativeStackNavigator();
@@ -33,12 +36,16 @@ function App() {
         <Stack.Screen name="VaccineResults" component={VaccineResults} />
         <Stack.Screen name="BookSlot" component={BookSlot} />
         <Stack.Screen name="Submit" component={Submit} />
+        <Stack.Screen name="Slotbooked" component={Slotbooked} />
       </Stack.Navigator>
     </NavigationContainer>
     // <BookSlot/>
     // <RequestVaccine/>
     // <VaccineDetails/>
     // <Submit/>
+    // <Cards/>
+    // <Slotbooked/>
+
   );
 }
 

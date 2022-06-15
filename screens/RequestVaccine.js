@@ -101,29 +101,32 @@ export default RequestVaccine = ({ navigation }) => {
 
   const [vaccine, setVaccine] = useState('Vaccine Type');
   return (
-    <ScrollView>
+    // <ScrollView>
     <View style={styles.container}>
-    <View style={{ flex: 1, backgroundColor: "#306060", justifyContent: 'center', alignItems: 'center' }} >
-      {/* <Image source={require('../src/assets/signin.png')} style={styles.image} /> */}
+    <View style={{ flex: 1, backgroundColor: "#48A296", justifyContent: 'center', alignItems: 'center' }} >
+      <Image source={require('../src/assets/signin.png')} style={styles.image} />
       <Text style={styles.titleText}>Request Vaccine</Text>
     </View>
 
 
-    <View style={{ flex: 2.5, backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50 }} >
-      <SafeAreaView style={{ marginTop: 20, marginLeft: 40, marginRight: 40 }}>
+    <View style={{ flex: 2.5, backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50,  }} >
+      <SafeAreaView style={{ marginTop: 40, marginLeft: 40, marginRight: 40 }}>
 
-      <Picker
+<View style={{borderWidth: 1,
+  borderRadius: 50}}>
+      <Picker style ={{}}
           selectedValue={vaccine}
           onValueChange={currentVaccine => setVaccine(currentVaccine)}>
           <Picker.Item label="Moderna" value="Moderna" />
           <Picker.Item label="Synopharm" value="Synopharm" />
           <Picker.Item label="Synovac" value="Synovac" />
         </Picker>
+        </View>
         {/* <TextInput placeholder="City" style={styles.inputStyle} />
         <TextInput placeholder="Center" style={styles.inputStyle} />
         <TextInput placeholder="CNIC" style={styles.inputStyle} /> */}
        
-        <Text
+        {/* <Text
           style={{
             fontSize: 30,
             color: '#fff',
@@ -131,13 +134,14 @@ export default RequestVaccine = ({ navigation }) => {
             justifyContent: 'center',
           }}>
           Vaccine: {vaccine}
-          </Text>
+          </Text> */}
       <TextInput
             label="City"
             placeholder="City/Picker?"
             mode="outlined"
             // value="Em"
             keyboardType="name-phone-pad"
+            // backgroundcolor ='blue'
             returnKeyType="next"
             style={styles.input}
             theme={{ roundness: 20 }}      
@@ -196,7 +200,7 @@ export default RequestVaccine = ({ navigation }) => {
 
     </View>
   </View>
-  </ScrollView>
+  //  </ScrollView> 
   );
 };
 
@@ -206,22 +210,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // padding: 20,
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     // alignItems:'center',
     justifyContent:'center',
     flexDirection: "column"
   },
   inputStyle: {
-        marginTop: 20,
+        marginTop: 10,
+        // paddingTop:10,
         width: 300,
         height: 40,
         paddingHorizontal: 10,
         borderRadius: 50,
-        backgroundColor: '#306060',
+        backgroundColor: '#48A296',
       },
   ButtonStyle: {
     // flex: 1,
-    backgroundColor:'#306060',
+    backgroundColor:'#48A296',
     marginBottom: 10,
     width: 148,
   },
@@ -233,7 +238,7 @@ const styles = StyleSheet.create({
   },
   colorstyle: {
     // color:'#48A296',
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     marginVertical: 5,
   },
   image: {
@@ -256,7 +261,7 @@ const styles = StyleSheet.create({
     // paddingTop:50,
   },
   colorstyle2: {
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     marginVertical: 5,
     // fontWeight:"bold"
   },

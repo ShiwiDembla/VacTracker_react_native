@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: deviceWidth - offset,
-    backgroundColor: '#48A296',
+    backgroundColor: '#D3D3D3',
     height: 150,
     borderRadius: radius,
 
@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontSize: 20,
     fontWeight: '800',
+    color: '#48A296'
     
   },
   categoryStyle: {

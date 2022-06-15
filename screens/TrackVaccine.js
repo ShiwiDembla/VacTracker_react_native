@@ -10,8 +10,8 @@ function TrackVaccine({navigation}){
 
     return(
         // <ScrollView>
-              <View style={{flex:1}}>
-              <View style={{flex:1, backgroundColor: "#306060", alignItems:"center", justifyContent: "center"}}> 
+              <View style={{flex:1,}}>
+              <View style={{flex:1, backgroundColor: "#48A296", alignItems:"center", justifyContent: "center"}}> 
               {/* <Image style={{flex:1,height:400}} source={require('../src/assets/maps.png')} /> */}
               <MapView
               provider={PROVIDER_GOOGLE} // remove if not using Google Maps
@@ -29,9 +29,13 @@ function TrackVaccine({navigation}){
               </View>
 
 
-              <View style={{flex:2.5, backgroundColor: "#306060", borderTopLeftRadius: 30, borderTopRightRadius: 50}}>
+              <View style={{flex:2.5, backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50}}>
+              
+
                 {/* <Text style={{fontSize: 20, textAlign: "center", fontWeight: "bold"}}>HELLO</Text> */}
                 
+
+                {/* tracking components */}
                 <View style={{alignItems:'center', justifyContent:'center', marginTop:80}}>
                
                <Picker 
@@ -46,7 +50,7 @@ function TrackVaccine({navigation}){
 
           <Button mode="contained"
             style={styles.ButtonStyle}
-            theme={{ roundness: 20 }}  
+            theme={{ roundness: 10 }}  
             onPress={() => navigation.navigate('CentersResults')}
             contentStyle={{ justifyContent: 'center', fontWeight: 100,  }}>
            Track
@@ -69,78 +73,27 @@ export default TrackVaccine;
 
 
 
-{/* <View style={{flex:1, alignItems: "center", justifyContent: "center"}}>
-<View style={{ flex: 1, backgroundColor: "#48A296", justifyContent: 'center', alignItems: 'center' }} >
-<Image style={{width: 100, height: 100}} source={require('../src/assets/signin.png')} />
-
-<Text>Welcome</Text>
-</View>
-<View style={{ flex: 2.5, backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50 }} >
-<Text>Hello</Text>
-</View>
-</View> */}
 
 
 const styles = StyleSheet.create({
   ButtonStyle: {
     // flex: 1,
-    backgroundColor:'#cad4d8',
+    backgroundColor:'#48A296',
     // color:'black',
     marginBottom: 55,
-    width: 148,
+    width: 160,
+    // height: 30
    
   },
   picker:{
     width:148,
-    borderWidth:1,
-    borderColor:'#cad4d8',
+    // borderRadius:40,
+    borderWidth:4,
+    // borderColor:'#48A296',
+    // backgroundColor: '#48A296',
     marginBottom:10
   },
   map: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
   },
 });
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#48A296',
-//     justifyContent:'center',
-//     flexDirection: "column"
-//   },
-
-//   ButtonStyle: {
-//     backgroundColor:'#48A296',
-//     marginBottom: 55,
-//     width: 148,
-//   },
-//   row: {
-//     flexDirection: 'row',
-//     // textAlign: 'right'
-//     justifyContent: 'center',
-//     alignItems: 'center'
-//   },
-//   colorstyle: {
-//     // color:'#48A296',
-//     backgroundColor: '#48A296',
-//     marginVertical: 5,
-//   },
-//   image: {
-//     width: '40%',
-//     height: '40%',
-//   },
-//   titleText: {
-//     fontWeight: "bold",
-//     color: 'white',
-//     fontSize: 40,
-//   },
- 
-//   colorstyle2: {
-//     backgroundColor: '#48A296',
-//     marginVertical: 5,
-//     // fontWeight:"bold"
-//   },
-//   linkText: {
-//     color: 'gray',
-//     // textAlign: 'right'
-
-//   }
-//   });

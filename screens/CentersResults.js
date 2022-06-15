@@ -53,8 +53,8 @@ export default CentersResults = ({ navigation }) => {
   return (
     // <ScrollView>
     <View style={styles.container}>
-      <View style={{ flex: 1, backgroundColor: "#306060", justifyContent: 'center', alignItems: 'center',padding:5}} >
-        {/* <Image source={require('../src/assets/signin.png')} style={styles.image} /> */}
+      <View style={{ flex: 1, backgroundColor: "#48A296", justifyContent: 'center', alignItems: 'center',padding:5}} >
+        <Image source={require('../src/assets/result.png')} style={styles.image} />
         <Text style={styles.titleText}>Centers Results </Text>
       </View>
 
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // padding: 20,
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     // alignItems:'center',
     justifyContent:'center',
     flexDirection: "column"
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
 
   colorstyle: {
     // color:'#48A296',
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     marginVertical: 5,
   },
   image: {
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   colorstyle2: {
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     marginVertical: 5,
     // fontWeight:"bold"
   },

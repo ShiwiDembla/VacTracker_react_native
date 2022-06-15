@@ -20,7 +20,7 @@ export default Welcome = ({ navigation }) => {
                 <View style={style.button}>
                     <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                         <LinearGradient
-                            colors={['#306060', '#82afb0']}
+                            colors={['#48A296', '#82afb0']}
                             style={style.signIn}
                         >
                             <Text
@@ -46,7 +46,7 @@ export default Welcome = ({ navigation }) => {
                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
 
                         <LinearGradient
-                            colors={['#306060', '#82afb0']}
+                            colors={['#48A296', '#82afb0']}
                             style={style.signIn}
                         >
                             <Text
@@ -77,7 +77,7 @@ const style = StyleSheet.create({
     titleText: {
         fontSize: 30,
         fontWeight: 'bold',
-        color: '#306060',
+        color: '#48A296',
 
     },
     ButtonStyle: {
@@ -88,12 +88,12 @@ const style = StyleSheet.create({
     },
     colorstyle: {
         // color:'#48A296',
-        backgroundColor: '#306060',
+        backgroundColor: '#48A296',
         marginVertical: 5,
 
     },
     colorstyle2: {
-        backgroundColor: '#306060',
+        backgroundColor: '#48A296',
         marginVertical: 5,
     },
     button: {

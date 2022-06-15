@@ -10,13 +10,19 @@ import LinearGradient from "react-native-linear-gradient";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 export default Signup = ({ navigation }) => {
+
   const [name,setName] = useState("");
   const [email,setEmail] = useState("");
+  const [phone, setPhone] = useState(""); 
   const [password,setPassword] = useState("");
+  const [confirmPassword,setConfirmPassword] = useState("");
+
+
+
   return (
     // <KeyboardAwareScrollView> 
     <View style={styles.container}>
-    <View style={{ flex: 1, backgroundColor: "#306060", justifyContent: 'center', alignItems: 'center' }} >
+    <View style={{ flex: 1, backgroundColor: "#48A296", justifyContent: 'center', alignItems: 'center' }} >
     <Animatable.Image 
           animation ="bounceIn"
           duration={1500} source={require('../src/assets/signin.png')} style={styles.image} />
@@ -29,7 +35,7 @@ export default Signup = ({ navigation }) => {
         duratio={1500} style={{ flex: 2.5 ,backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50 }} >
           <ScrollView>
       <SafeAreaView style={{ marginTop: 20, marginLeft: 40, marginRight: 40 }}>
-      <Text style={{textAlign:'center',color:'#306060', fontWeight:'bold',fontSize:18, marginBottom:16}}>Create your new account</Text>
+      <Text style={{textAlign:'center',color:'#48A296', fontWeight:'bold',fontSize:18, marginBottom:16}}>Create your new account</Text>
 
 
      {/* <View style={{flexDirection:'row', 
@@ -178,7 +184,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // padding: 20,
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     // alignItems:'center',
     justifyContent:'center',
     flexDirection: "column"
@@ -186,7 +192,7 @@ const styles = StyleSheet.create({
 
   ButtonStyle: {
     // flex: 1,
-    backgroundColor:'#306060',
+    backgroundColor:'#48A296',
     marginBottom: 10,
     width: 148,
   },
@@ -198,7 +204,7 @@ const styles = StyleSheet.create({
   },
   colorstyle: {
     // color:'#48A296',
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     marginVertical: 5,
   },
   image: {
@@ -224,7 +230,7 @@ const styles = StyleSheet.create({
     // paddingTop:50,
   },
   colorstyle2: {
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     marginVertical: 5,
     // fontWeight:"bold"
   },

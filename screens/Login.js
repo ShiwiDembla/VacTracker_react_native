@@ -7,11 +7,17 @@ import LinearGradient from "react-native-linear-gradient";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 export default Login = ({ navigation }) => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState(""); 
+ 
+
+
   return (
     // <ScrollView>
       <View style={styles.container}>
-        <View style={{ flex: 1, backgroundColor: "#306060", justifyContent: 'center', alignItems: 'center' }} >
-          <Animatable.Image 
+        <View style={{ flex: 1, backgroundColor: "#48A296", justifyContent: 'center', alignItems: 'center' }} >
+          <Animatable.Image  
           animation ="bounceIn"
           duration={1500}
           source={require('../src/assets/signin.png')} style={styles.image} />
@@ -33,6 +39,8 @@ export default Login = ({ navigation }) => {
               // value="Em"
               keyboardType="email-address"
               returnKeyType="next"
+              value={email}
+              onChangeText={setEmail}
               style={styles.input}
               theme={{ roundness: 20 }}
             // value={text}
@@ -77,9 +85,9 @@ export default Login = ({ navigation }) => {
             </View>
 
           </SafeAreaView>
-
-
         </Animatable.View>
+
+        
       </View>
     // </ScrollView>
   );
@@ -96,7 +104,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // padding: 20,
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     // alignItems:'center',
     justifyContent: 'center',
     flexDirection: "column"
@@ -104,7 +112,7 @@ const styles = StyleSheet.create({
 
   ButtonStyle: {
     // flex: 1,
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     marginBottom: 55,
     width: 148,
   },
@@ -116,7 +124,7 @@ const styles = StyleSheet.create({
   },
   colorstyle: {
     // color:'#48A296',
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     marginVertical: 5,
   },
   image: {
@@ -140,7 +148,7 @@ const styles = StyleSheet.create({
     // paddingTop:50,
   },
   colorstyle2: {
-    backgroundColor: '#306060',
+    backgroundColor: '#48A296',
     marginVertical: 5,
     // fontWeight:"bold"
   },

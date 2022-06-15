@@ -14,7 +14,7 @@ function HomeScreen() {
     <Tab.Navigator
       initialRouteName="Home"
       activeColor="#cad4d8"
-      barStyle={{ backgroundColor: '#306060' }}
+      barStyle={{ backgroundColor: '#48A296' }}
     >
       <Tab.Screen
         name="Login"
