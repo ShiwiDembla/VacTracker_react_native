@@ -19,7 +19,6 @@ import Cards from './src/components/Cards';
 import DetailsCards from './src/components/DetailsCards';
 import Slotbooked from './Screens/Slotbooked';
 
-
 const Stack = createNativeStackNavigator();
 
 
