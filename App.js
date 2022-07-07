@@ -23,7 +23,9 @@ const Stack = createNativeStackNavigator();
 
 
 function App() {
+
   return (
+  
     <NavigationContainer >
       <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Welcome" component={Welcome} />
@@ -38,6 +40,7 @@ function App() {
         <Stack.Screen name="Slotbooked" component={Slotbooked} />
       </Stack.Navigator>
     </NavigationContainer>
+  
     // <BookSlot/>
     // <RequestVaccine/>
     // <VaccineDetails/>

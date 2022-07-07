@@ -3,106 +3,101 @@ import { Button, TextInput } from 'react-native-paper';
 import * as Animatable from 'react-native-animatable'
 import { StyleSheet, ScrollView, SafeAreaView, Text, View, Image, Icon } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
-
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+// import { AuthContext } from "../src/components/Context";
 
 export default Login = ({ navigation }) => {
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
- 
+  const [password, setPassword] = useState("");
 
-  loginuser = () =>{
-    
-  }
+
+  // loginuser = () =>{
+
+  // }
+
+  // const { Login } = React.useContext(AuthContext);
 
 
   return (
     // <ScrollView>
-      <View style={styles.container}>
-        <View style={{ flex: 1, backgroundColor: "#48A296", justifyContent: 'center', alignItems: 'center' }} >
-          <Animatable.Image  
-          animation ="bounceIn"
+    <View style={styles.container}>
+      <View style={{ flex: 1, backgroundColor: "#48A296", justifyContent: 'center', alignItems: 'center' }} >
+        <Animatable.Image
+          animation="bounceIn"
           duration={1500}
           source={require('../src/assets/signin.png')} style={styles.image} />
-          <Text style={styles.titleText}>Welcome</Text>
-        </View>
+        <Text style={styles.titleText}>Welcome</Text>
+      </View>
 
 
 
-        <Animatable.View 
+      <Animatable.View
         animation="fadeInUpBig"
         duration={1500}
         style={{ flex: 2.5, backgroundColor: "white", borderTopLeftRadius: 30, borderTopRightRadius: 50 }} >
-          <SafeAreaView style={{ marginTop: 80, marginLeft: 40, marginRight: 40 }}>
+        <SafeAreaView style={{ marginTop: 80, marginLeft: 40, marginRight: 40 }}>
 
-            <TextInput
-              label="Email"
-              placeholder="Email"
-              mode="outlined"
-              // value="Em"
-              keyboardType="email-address"
-              returnKeyType="next"
-              value={email}
-              onChangeText={setEmail}
-              style={styles.input}
+          <TextInput
+            label="Email"
+            placeholder="Email"
+            mode="outlined"
+            // value="Em"
+            keyboardType="email-address"
+            returnKeyType="next"
+            value={email}
+            onChangeText={setEmail}
+            style={styles.input}
+            theme={{ roundness: 20 }}
+          // value={text}
+          // onChangeText={text => setText(text)}
+          />
+
+          <TextInput
+            label="Password"
+            placeholder="Password"
+            mode="outlined"
+            // value="Em"
+            secureTextEntry={true}
+            returnKeyType="done"
+            multiline={false}
+            // secureTextEntry
+            autoCorrect={false}
+            theme={{ roundness: 20 }}
+            style={styles.input}
+            right={<TextInput.Icon name="eye" />}
+          // value={text}
+          // onChangeText={text => setText(text)}
+          />
+
+
+
+          <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 40 }}>
+            <Button
+              // icon={camera}
+              mode="contained"
+              style={styles.ButtonStyle}
               theme={{ roundness: 20 }}
-            // value={text}
-            // onChangeText={text => setText(text)}
-            />
-
-            <TextInput
-              label="Password"
-              placeholder="Password"
-              mode="outlined"
-              // value="Em"
-              secureTextEntry={true}
-              returnKeyType="done"
-              multiline={false}
-              // secureTextEntry
-              autoCorrect={false}
-              theme={{ roundness: 20 }}
-              style={styles.input}
-              right={<TextInput.Icon name="eye" />}
-            // value={text}
-            // onChangeText={text => setText(text)}
-            />
+              onPress={() => navigation.navigate('HomeScreen')}
+              contentStyle={{ justifyContent: 'center', fontWeight: 100 }}>
+              Login
+            </Button>
+          </View>
 
 
+          <View style={[styles.row, { marginTop: 4 }]}>
+            <Text style={styles.linkText} > Don't have an account? </Text>
+            <Text style={[styles.linkText, { fontWeight: 'bold' }]} onPress={() => navigation.navigate('Signup')}>Signup</Text>
+          </View>
 
-            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 40 }}>
-              <Button
-                // icon={camera}
-                mode="contained"
-                style={styles.ButtonStyle}
-                theme={{ roundness: 20 }}
-                onPress={() => navigation.navigate('HomeScreen')}
-                contentStyle={{ justifyContent: 'center', fontWeight: 100 }}>
-                Login
-              </Button>
-            </View>
+        </SafeAreaView>
+      </Animatable.View>
 
 
-            <View style={[styles.row, { marginTop: 4 }]}>
-              <Text style={styles.linkText} > Don't have an account? </Text>
-              <Text style={[styles.linkText, { fontWeight: 'bold' }]} onPress={() => navigation.navigate('Signup')}>Signup</Text>
-            </View>
-
-          </SafeAreaView>
-        </Animatable.View>
-
-        
-      </View>
+    </View>
     // </ScrollView>
   );
 };
-
-
-
-
-
-
-
 
 const styles = StyleSheet.create({
   container: {
