@@ -87,12 +87,18 @@ function App() {
       // setUserToken('abc');
       // setIsLoading(false);
       let userToken;
-      email = null;
+      // email = null;
       if(email == 'admin' && password == '123'){
         userToken = 'adminadmin';
         console.log('login user token', userToken);
+        console.log(email);
+        console.log(password);
+      }
+      else{
+        console.log('cant login')
       }
       console.log('without login user token', userToken); //user token is null
+    
       dispatch({type:'LOGIN',id:email,token:userToken});
     },
     Signup:()=>{
