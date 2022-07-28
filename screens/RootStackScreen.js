@@ -2,7 +2,7 @@ import React from 'react';
 
 // import { createNativeStackNavigator } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AuthContext } from '../src/context/AuthContext';
+// import { AuthContext } from '../src/context/AuthContext';
 
 
 import Welcome from './Welcome'

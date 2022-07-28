@@ -27,11 +27,11 @@ import React from "react"
 import {View, Text, StyleSheet,Image} from 'react-native'
 import {Button, Title} from 'react-native-paper'
  import Header from '../src/components/Headerbar';
-//  import { AuthContext } from "../src/components/Context";
+ import { AuthContext } from "../src/components/Context";
 
 
 export default Submit = ({navigation}) => {
-  // const {Signout} = React.useContext(AuthContext);
+  const {Signout} = React.useContext(AuthContext);
 return(
   
 <View style={styles.container}>
@@ -48,8 +48,8 @@ backgroundColor="#48A296"
     <Title style ={[styles.title, {fontSize:30}]}>Request for Vaccine! </Title>
   <Text 
   style={[styles.title, {fontSize:15}]} 
-  onPress={() => navigation.navigate('HomeScreen')}
-  // onPress ={ ()=> {Signout()}}
+  // onPress={() => navigation.navigate('HomeScreen')}
+  onPress ={ ()=> {Signout()}}
   > 
   Your request has been submitted. You will be notified through Email 
   </Text>

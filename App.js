@@ -1,11 +1,12 @@
 // In App.js in a new project
 
 import * as React from 'react';
-// import {View, ActivityIndicator} from 'react-native'
-import { NavigationContainer } from '@react-navigation/native';
+import {View, ActivityIndicator} from 'react-native'
+import { NavigationContainer, useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { enableLatestRenderer } from 'react-native-maps';
-import { AuthProvider } from './src/context/AuthContext'
+import { AuthContext } from './src/components/Context';
+// import { AuthProvider } from './src/context/AuthContext'
 
 
 // import Login from './Screens/Login';
@@ -34,42 +35,120 @@ function App() {
   // const [isLoading, setIsLoading] = React.useState(true);
   // const[userToken,setUserToken] = React.useState(null);
 
-  // const authContext = React.useMemo(()=>({
-  //   Login:()=>{
-  //     setUserToken('abc');
-  //     setIsLoading(false);
-  //   },
-  //   Signup:()=>{
-  //     setUserToken('abc');
-  //     setIsLoading(false);
-  //   },
-  //   Signout:()=>{
-  //     setUserToken(null);
-  //     setIsLoading(false);
-  //   }
-  // }));
+  //reducer states
+ const initialLoginState = {
+  isLoading: true,
+  email : null,
+  userToken: null,
+  
+  }
 
-  // React.useEffect(()=>{
+  const loginReducer = (prevState, action) => {
+    switch (action.type) {
+      case 'RETRIEVE_TOKEN':
+        return {
+          ...prevState,
+          userToken: action.token,
+          isLoading: false,
+        };
+      case 'LOGIN':
+        return {
+          ...prevState,
+          email: action.id,
+          userToken: action.token,
+          isLoading: false,
+        };
+      case 'LOGOUT':
+        return {
+          ...prevState,
+          email: null,
+          userToken: null,
+          isLoading: false,
+        };
+      case 'REGISTER':
+        return {
+          ...prevState,
+          email: action.id,
+          userToken: action.token,
+          isLoading: false,
+        };
+      // default:
+      //   return prevState;
+    }
+  }
+
+  //create login reducer
+
+  const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState);
+
+
+  const authContext = React.useMemo(()=>({
+    Login:(email, password)=>{
+      // setUserToken('abc');
+      // setIsLoading(false);
+      let userToken;
+      email = null;
+      if(email == 'admin' && password == '123'){
+        userToken = 'adminadmin';
+        console.log('login user token', userToken);
+      }
+      console.log('without login user token', userToken); //user token is null
+      dispatch({type:'LOGIN',id:email,token:userToken});
+    },
+    Signup:()=>{
+      setUserToken('abc');
+      setIsLoading(false); 
+    },
+    Signout:()=>{
+      // setUserToken(null);
+      // setIsLoading(false);
+      // console.log(' signout user token', userToken);
+      dispatch({type:'LOGOUT'});
+    }
+  }), []);
+
+  React.useEffect(()=>{
     
-  //   setTimeout(()=>{
-  //     setIsLoading(false);
-  //   }, 1000);
-  // }, []);
+    setTimeout(()=>{
+      // setIsLoading(false);
+      let userToken;
+      userToken = 'xyz';
+      console.log(' initial user token', userToken); //user token is null
+      dispatch({type:'REGISTER',token:'abcd'});
+    }, 1000);
+  }, []);
 
-  // if( isLoading) {
-  //   return(
-  //     <View style={{flex:1, justifyContent:'center', alignItems:"center"}}>
-  //       <ActivityIndicator size="large"/>
-  //     </View>
-  //   )
+  if( loginState.isLoading) {
+    return(
+      <View style={{flex:1, justifyContent:'center', alignItems:"center"}}>
+        <ActivityIndicator size="large"/>
+      </View>
+    )
 
-  // }
+  }
 
   return (   
   
-  <AuthProvider>
-    <NavigationContainer>
-   {/* <Stack.Navigator screenOptions={{ headerShown: false }}>
+  // <AuthProvider>
+  //   <NavigationContainer>
+  //  <Stack.Navigator screenOptions={{ headerShown: false }}>
+  //           <Stack.Screen name="HomeScreen" component={HomeScreen} />
+  //           <Stack.Screen name="Home" component={Home} />
+  //           <Stack.Screen name="CentersResults" component={CentersResults} />
+  //           <Stack.Screen name="VaccineResults" component={VaccineResults} />
+  //           <Stack.Screen name="BookSlot" component={BookSlot} />
+  //           <Stack.Screen name="Submit" component={Submit} />
+  //           <Stack.Screen name="Slotbooked" component={Slotbooked} />
+  //      </Stack.Navigator> 
+       
+  //   <RootStackScreen />
+  //   </NavigationContainer>
+  //   </AuthProvider>
+
+    <AuthContext.Provider value={authContext}>
+    <NavigationContainer >
+      {loginState.userToken !== null ? (
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="CentersResults" component={CentersResults} />
@@ -77,27 +156,10 @@ function App() {
             <Stack.Screen name="BookSlot" component={BookSlot} />
             <Stack.Screen name="Submit" component={Submit} />
             <Stack.Screen name="Slotbooked" component={Slotbooked} />
-       </Stack.Navigator> */}
-       
-    <RootStackScreen />
+          </Stack.Navigator>
+      ):  <RootStackScreen />}
     </NavigationContainer>
-    </AuthProvider>
-
-    // <AuthContext.Provider value={authContext}>
-    // <NavigationContainer >
-    //   {userToken != null ? (
-    //         <Stack.Navigator screenOptions={{ headerShown: false }}>
-    //         <Stack.Screen name="HomeScreen" component={HomeScreen} />
-    //         <Stack.Screen name="Home" component={Home} />
-    //         <Stack.Screen name="CentersResults" component={CentersResults} />
-    //         <Stack.Screen name="VaccineResults" component={VaccineResults} />
-    //         <Stack.Screen name="BookSlot" component={BookSlot} />
-    //         <Stack.Screen name="Submit" component={Submit} />
-    //         <Stack.Screen name="Slotbooked" component={Slotbooked} />
-    //       </Stack.Navigator>
-    //   ):  <RootStackScreen />}
-    // </NavigationContainer>
-    // </AuthContext.Provider>
+    </AuthContext.Provider>
 
     );
 }

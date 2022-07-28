@@ -4,24 +4,25 @@ import * as Animatable from 'react-native-animatable'
 import { StyleSheet, ScrollView, SafeAreaView, Text, View, Image, Icon } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import { AuthContext } from "../src/context/AuthContext";
+// import { AuthContext } from "../src/context/AuthContext";
+
+import { AuthContext } from "../src/components/Context";
 
 
 export default Login = ({ navigation }) => {
 
 
-
-  const {test} = useContext(AuthContext);
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const { Login } = React.useContext(AuthContext);
+  // const {test} = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   
   
 
-  // loginuser = () =>{
-
-  // }
-
-  // const { Login } = React.useContext(AuthContext);
+  const onLogin = (email,password) => {
+  Login(email,password);
+  }
+  
 
 
   return (
@@ -50,8 +51,8 @@ export default Login = ({ navigation }) => {
             // value="Em"
             keyboardType="email-address"
             returnKeyType="next"
-            // value={email}
-            // onChangeText={setEmail}
+            value={email}
+            onChangeText={setEmail}
             style={styles.input}
             theme={{ roundness: 20 }}
           // value={text}
@@ -71,10 +72,10 @@ export default Login = ({ navigation }) => {
             theme={{ roundness: 20 }}
             style={styles.input}
             right={<TextInput.Icon name="eye" />}
-          // value={text}
-          // onChangeText={text => setText(text)}
+          value={password}
+          onChangeText={setPassword}
           />
-          <Text> hello {test}</Text>
+          {/* <Text> hello {test}</Text> */}
 
 
           <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 40 }}>
@@ -83,8 +84,8 @@ export default Login = ({ navigation }) => {
               mode="contained"
               style={styles.ButtonStyle}
               theme={{ roundness: 20 }}
-              onPress={() => navigation.navigate('HomeScreen')}
-              // onPress ={()=> {Login()}}
+              // onPress={() => navigation.navigate('HomeScreen')}
+              onPress ={()=> {onLogin(email,password)}}
               contentStyle={{ justifyContent: 'center', fontWeight: 100 }}>
               Login
             </Button>
