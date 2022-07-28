@@ -1,16 +1,19 @@
 import React from 'react';
 
-import { createStackNavigator } from '@react-navigation/stack';
+// import { createNativeStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { AuthContext } from '../src/context/AuthContext';
+
 
 import Welcome from './Welcome'
 import Login from './Login'
 import Signup from './Signup'
 
-const RootStack = createStackNavigator();
+const RootStack = createNativeStackNavigator();
 
 const RootStackScreen= ({navigation}) => (
-    <RootStack.Navigator headerMode='none'>
-        <RootStackScreen.Screen name="Welcome" component={Welcome}/>
+    <RootStack.Navigator screenOptions={{ headerShown: false }}>
+        <RootStack.Screen name="Welcome" component={Welcome}/>
         <RootStack.Screen name="Login" component={Login}/>
         <RootStack.Screen name="Signup" component={Signup}/>
     </RootStack.Navigator>

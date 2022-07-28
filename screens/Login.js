@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import { Button, TextInput } from 'react-native-paper';
 import * as Animatable from 'react-native-animatable'
 import { StyleSheet, ScrollView, SafeAreaView, Text, View, Image, Icon } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-// import { AuthContext } from "../src/components/Context";
+import { AuthContext } from "../src/context/AuthContext";
+
 
 export default Login = ({ navigation }) => {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
+
+  const {test} = useContext(AuthContext);
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  
+  
 
   // loginuser = () =>{
 
@@ -45,8 +50,8 @@ export default Login = ({ navigation }) => {
             // value="Em"
             keyboardType="email-address"
             returnKeyType="next"
-            value={email}
-            onChangeText={setEmail}
+            // value={email}
+            // onChangeText={setEmail}
             style={styles.input}
             theme={{ roundness: 20 }}
           // value={text}
@@ -69,7 +74,7 @@ export default Login = ({ navigation }) => {
           // value={text}
           // onChangeText={text => setText(text)}
           />
-
+          <Text> hello {test}</Text>
 
 
           <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 40 }}>
@@ -79,6 +84,7 @@ export default Login = ({ navigation }) => {
               style={styles.ButtonStyle}
               theme={{ roundness: 20 }}
               onPress={() => navigation.navigate('HomeScreen')}
+              // onPress ={()=> {Login()}}
               contentStyle={{ justifyContent: 'center', fontWeight: 100 }}>
               Login
             </Button>
