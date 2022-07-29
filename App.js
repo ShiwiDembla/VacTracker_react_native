@@ -1,7 +1,7 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import {View, ActivityIndicator} from 'react-native'
+import {View, ActivityIndicator, Text} from 'react-native'
 import { NavigationContainer, useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { enableLatestRenderer } from 'react-native-maps';
@@ -12,6 +12,8 @@ import { AuthContext } from './src/components/Context';
 // import Login from './Screens/Login';
 // import Signup from './Screens/Signup';
 // import Welcome from "./Screens/Welcome";
+
+
 import HomeScreen from './Screens/HomeScreen';
 import Home from './Screens/Home';
 import RequestVaccine from './Screens/RequestVaccine';
@@ -25,6 +27,8 @@ import DetailsCards from './src/components/DetailsCards';
 import Slotbooked from './Screens/Slotbooked';
 import RootStackScreen from './Screens/RootStackScreen';
 
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // import Signup from './Screens/Signup';
 // import { ActivityIndicator } from 'react-native-paper';
 
@@ -83,13 +87,21 @@ function App() {
 
 
   const authContext = React.useMemo(()=>({
-    Login:(email, password)=>{
+    Login: async(email, password)=>{
       // setUserToken('abc');
       // setIsLoading(false);
       let userToken;
-      // email = null;
+      userToken = null;
       if(email == 'admin' && password == '123'){
-        userToken = 'adminadmin';
+        // async storage 
+        try{
+          userToken = 'adminadmin';
+          await AsyncStorage.setItem('userToken', userToken);
+        }
+        catch(e){
+          console.log(e);
+        }
+        
         console.log('login user token', userToken);
         console.log(email);
         console.log(password);
@@ -105,22 +117,37 @@ function App() {
       setUserToken('abc');
       setIsLoading(false); 
     },
-    Signout:()=>{
+
+    // remove userToken from async storage 
+    Signout: async()=>{
       // setUserToken(null);
       // setIsLoading(false);
-      // console.log(' signout user token', userToken);
+      try{
+        userToken = await AsyncStorage.removeItem('userToken');
+       }
+        catch(e){
+          console.log(e);
+        }
+        //  console.log(' signout user token', userToken);
       dispatch({type:'LOGOUT'});
     }
   }), []);
 
   React.useEffect(()=>{
     
-    setTimeout(()=>{
+    setTimeout(async()=>{
       // setIsLoading(false);
       let userToken;
-      userToken = 'xyz';
+      userToken = null;
+     // async storage
+     try{
+      userToken = await AsyncStorage.getItem('userToken');
+     }
+      catch(e){
+        console.log(e);
+      }
       console.log(' initial user token', userToken); //user token is null
-      dispatch({type:'REGISTER',token:'abcd'});
+      dispatch({type:'REGISTER',token:null});
     }, 1000);
   }, []);
 
@@ -153,7 +180,8 @@ function App() {
 
     <AuthContext.Provider value={authContext}>
     <NavigationContainer >
-      {loginState.userToken !== null ? (
+    <Text> {loginState.userToken} </Text> 
+      {loginState.userToken != null ? (
             <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="Home" component={Home} />
