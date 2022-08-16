@@ -12,12 +12,22 @@ import { AuthContext } from "../src/components/Context";
 export default Login = ({ navigation }) => {
 
 
-  const { Login } = React.useContext(AuthContext);
+ 
   // const {test} = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
-  
+
+//state 
+    // const [data, setData] =  React.useState(
+    //   {
+    //     email: "",
+    //     password: "",
+    //     check_textInputChange: false,
+    //     secureTextEntry: true
+    //   }
+    // )
+   
+  const { Login } = React.useContext(AuthContext);
 
   const onLogin = (email,password) => {
   Login(email,password);
