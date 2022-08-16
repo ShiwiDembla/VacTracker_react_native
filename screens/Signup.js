@@ -6,9 +6,9 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { StyleSheet, ScrollView, SafeAreaView, Text, View, Image, Icon} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradient from "react-native-linear-gradient";
-
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default Signup = ({navigation}) => {
@@ -19,7 +19,7 @@ export default Signup = ({navigation}) => {
   const [password,setPassword] = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
 
-  const insertuser = () =>{
+  const insertuser = async () =>{
     fetch("http:10.0.2.2:3000/usersignup", {
       method : "post",
       headers:{
@@ -36,7 +36,18 @@ export default Signup = ({navigation}) => {
   .then(res=>res.json())
   //data as response
   .then(data => {
-      console.log(data)
+    // signed up data output
+      // console.log(data)
+      try{
+        //set user data in async storage
+        await AsyncStorage.setItem('user',JSON.stringify(data)) 
+        // saving token in async storage
+        await  AsyncStorage.setItem('token',data.token)
+      }
+      catch(e)
+      {
+        console.log("error in saving token",e)
+      }
      
   }).catch(err => {
       console.log(err)

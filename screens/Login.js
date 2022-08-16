@@ -5,17 +5,50 @@ import { StyleSheet, ScrollView, SafeAreaView, Text, View, Image, Icon } from 'r
 import LinearGradient from "react-native-linear-gradient";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 // import { AuthContext } from "../src/context/AuthContext";
-
 import { AuthContext } from "../src/components/Context";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Submit from "./Submit";
 
 export default Login = ({ navigation }) => {
+   // const {test} = useContext(AuthContext);
+   const [email, setEmail] = useState("");
+   const [password, setPassword] = useState("");
+  
 
-
+  const loginUser = async() =>{
+    fetch("http:10.0.2.2:3000/login", {
+      method : "get",
+      headers:{
+          'Content-Type': 'application/json' 
+      },
+      body:JSON.stringify({
+         email,
+         password
+      })
+  })
+  .then(res=>res.json())
+  //data as response
+  .then(data => {
+    // logged in data output
+      console.log(data)
+      try{
+        //set user data in async storage
+         AsyncStorage.setItem('user',JSON.stringify(data)) 
+        // saving token in async storage
+          AsyncStorage.setItem('token',data.token)
+      }
+      catch(e)
+      {
+        console.log("error in saving token",e)
+      }
+     
+  }).catch(err => {
+      console.log(err)
+  })
+   navigation.navigate('Submit')
+  }
  
-  // const {test} = useContext(AuthContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+ 
 
 //state 
     // const [data, setData] =  React.useState(
@@ -95,7 +128,8 @@ export default Login = ({ navigation }) => {
               style={styles.ButtonStyle}
               theme={{ roundness: 20 }}
               // onPress={() => navigation.navigate('HomeScreen')}
-              onPress ={()=> {onLogin(email,password)}}
+              // onPress ={()=> {onLogin(email,password)}}
+              onPress = {()=>loginUser()}
               contentStyle={{ justifyContent: 'center', fontWeight: 100 }}>
               Login
             </Button>
