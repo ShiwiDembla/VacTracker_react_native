@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const JWT_SECRET = "abcd"
+const jwtkey = "abcd"
 // const {mongoURI} = require('./keys')
 const mongoURI = 'mongodb+srv://Shiwani:Shiwi3245@cluster0.lvu2r.mongodb.net/loginUser?retryWrites=true&w=majority'
 
@@ -61,7 +61,7 @@ mongoose.connection.on('error',(err)=>{
             bcrypt.compare(password, data.password, (err, compareRes) => {
                 if(err) {res.status(502).json({message: "Error your message "});}
                 else if (compareRes) {
-                  const token =  jwt.sign({userId:User._id}, JWT_SECRET)
+                  const token =  jwt.sign({userId:User._id}, jwtkey)
                     res.status(201).json({
                         token,
                         success: true,
@@ -80,27 +80,88 @@ mongoose.connection.on('error',(err)=>{
     }) 
 })
 
+//middleware for auth
 const requireLogin = (req,res,next) =>{
     const {authorization} = req.headers
     if(!authorization){
-        return res.status(401).json({error:"You must be logged in1"})
+        return res.status(401).json({error:"Please provide JWT token"})
     }
-    try{
-        const {userId} = jwt.verify(authorization,JWT_SECRET)
-        req.user = userId
-        next()
-    }
-    catch(err){
-        return res.status(401).json({error:"you must be logged in12"})
-    }
+    // try{
+        const token = authorization.replace('Bearer ','')
+        const {userId} = jwt.verify(token,jwtkey, async(err, payload) => {
+
+            //if token not correct
+        if(err){
+            res.status(401).json({error:"JWT token incorrect"})
+        }
+        const {userId} = payload;
+        const user = await User.findById(userId);
+        req.user = user;
+        next();
+    } )
+    
+        // req.user = userId
+        // console.log(userId)
+        // next()
+    // }
+    // catch(err){
+    //     return res.status(401).json({error:"you must be logged in12"})
+    // }
 }
    
 
 app.get('/test',requireLogin,(req,res)=>{
-    // not printing userid
+ 
  res.json({message:req.user})
+
+//  res.json({message:req.user.id})
 })
 
+
+
+
+// app.post('/usersignup', async(req, res) => { 
+//     const {password, confirmPassword, email, phone, name} = req.body;
+//     const pass= await bcrypt.hash(password, 10)
+//     const confirmPass = await bcrypt.hash(confirmPassword, 10)
+
+//     const existUsername = await User.findOne({ email });
+
+//     if(!email || !password || !confirmPassword || !phone || !name){
+//       return  res.status(422).json({error:"Please add all the fields"})
+//     }
+//    if (existUsername) {
+//      res.send('User already exists with this email');
+//    }
+
+//    //try catch block?
+//    else{
+//     //saving new user
+//     const user = new User({
+//         name:req.body.name,
+//         email:req.body.email,
+//         password:pass,
+//         confirmPassword:confirmPass,
+//         phone:req.body.phone,
+//         })
+//         user.save()
+//     // await user.save()
+//     // const token =  jwt.sign({userId:user._id}, jwtkey)
+//     // res.status(200).json({message:"Signup success"})
+//     .then(data=>{
+//         console.log(data)
+//         res.send("saved")
+//     }).catch(err=>{
+//         console.log(err)
+//     })
+// }
+// })  
+
+
+
+
+
+//implementing jwt web token
 app.post('/usersignup', async(req, res) => { 
     const {password, confirmPassword, email, phone, name} = req.body;
     const pass= await bcrypt.hash(password, 10)
@@ -114,25 +175,39 @@ app.post('/usersignup', async(req, res) => {
    if (existUsername) {
      res.send('User already exists with this email');
    }
+
+   //try catch block?
    else{
-    //saving new user
-    const user = new User({
+    try{
+          //saving new user
+        const user = new User({
         name:req.body.name,
         email:req.body.email,
         password:pass,
         confirmPassword:confirmPass,
         phone:req.body.phone,
         })
-    user.save()
+
+    await user.save()
+    const token =  jwt.sign({userId:user._id}, jwtkey)
+    res.send({token,success:true})
     // res.status(200).json({message:"Signup success"})
-    .then(data=>{
-        console.log(data)
-        res.send("saved")
-    }).catch(err=>{
-        console.log(err)
-    })
-}
+    }
+  catch(e){
+    // use return to stop the function     
+  return  res.status(422).json(err.message)
+  }
+
+
+
+    }
 })  
+
+
+
+
+
+
 
 app.listen(PORT,()=>{
     console.log('running server on '+PORT)
